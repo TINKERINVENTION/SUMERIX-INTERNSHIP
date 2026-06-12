@@ -1,6 +1,7 @@
 -- ====================================================================
 -- Sumerix Global Internship: Task 2 SQL Analysis Script
 -- Objectives: Schema Definition, Relational Joins, & KPI Computation
+-- Compatible with MySQL, PostgreSQL, and SQLite local testing
 -- ====================================================================
 
 -- 1. Create Schema Structure
@@ -56,9 +57,9 @@ FROM Orders
 GROUP BY Product_Category
 ORDER BY Profit_Margin DESC;
 
--- KPI 3: Monthly Operational Sales Trend 
+-- KPI 3: Monthly Operational Sales Trend (SQLite strftime Fix Applied)
 SELECT 
-    EXTRACT(MONTH FROM Order_Date) AS Month_Number,
+    strftime('%m', Order_Date) AS Month_Number,
     ROUND(SUM(Sales), 2) AS Monthly_Revenue,
     COUNT(Order_ID) AS Total_Orders
 FROM Orders
